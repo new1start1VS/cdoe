@@ -61,6 +61,10 @@ npx serve .
 - 在 `game.js` 的 `LEVELS` 数组中编辑关卡布局（`.`空地 `B`砖 `S`钢 `G`草 `W`水 `X`基地）。
 - 调整 `makeTank` / `startStage` 中的速度、敌人数量、开火频率等参数来改变难度。
 
+## 📦 仓库其它内容
+
+- [`STM32-3-5-按键控制LED/`](./STM32-3-5-按键控制LED/) — 基于 STM32F103 标准外设库的 Keil 工程：按键控制 LED 翻转。详见该目录下的 README。
+
 ## 📜 License
 
 MIT

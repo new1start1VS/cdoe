@@ -13,3 +13,18 @@ Thumbs.db
 
 # Misc
 *.tmp
+
+# Keil MDK / STM32 build artifacts
+Objects/
+Listings/
+DebugConfig/
+*.uvoptx
+*.uvguix.*
+*.lst
+*.o
+*.crf
+*.d
+*.axf
+*.htm
+*.bak
+*.dep
