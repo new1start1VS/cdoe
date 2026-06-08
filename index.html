@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>坦克大战 · Tank Battle</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --panel: #141a24;
+      --accent: #f5c518;
+      --text: #e6e6e6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 0%, #1a2433, #0b0e14 70%);
+      color: var(--text);
+      font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      user-select: none;
+    }
+    h1 {
+      margin: 16px 0 8px;
+      font-size: 26px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(245, 197, 24, 0.4);
+    }
+    .wrap {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 8px 16px 24px;
+    }
+    .stage {
+      position: relative;
+      background: var(--panel);
+      border: 3px solid #2a3340;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+    canvas { display: block; border-radius: 4px; }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(11, 14, 20, 0.85);
+      border-radius: 4px;
+      text-align: center;
+      gap: 14px;
+      padding: 20px;
+    }
+    .overlay.hidden { display: none; }
+    .overlay h2 { margin: 0; font-size: 30px; letter-spacing: 2px; }
+    .overlay p { margin: 0; color: #9aa7b8; line-height: 1.7; }
+    .btn {
+      cursor: pointer;
+      border: none;
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #1a1a1a;
+      transition: transform .08s ease, box-shadow .2s ease;
+      box-shadow: 0 4px 0 #b9930f;
+    }
+    .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #b9930f; }
+    .panel {
+      width: 200px;
+      background: var(--panel);
+      border: 1px solid #2a3340;
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-size: 14px;
+    }
+    .panel h3 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 16px;
+      border-bottom: 1px solid #2a3340;
+      padding-bottom: 8px;
+    }
+    .stat { display: flex; justify-content: space-between; padding: 6px 0; }
+    .stat b { color: #fff; }
+    .keys { margin-top: 14px; color: #9aa7b8; line-height: 1.9; font-size: 13px; }
+    .keys kbd {
+      background: #0b0e14;
+      border: 1px solid #2a3340;
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      padding: 1px 7px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 12px;
+    }
+    footer { color: #5a6678; font-size: 12px; margin: 4px 0 18px; }
+  </style>
+</head>
+<body>
+  <h1>坦 克 大 战</h1>
+  <div class="wrap">
+    <div class="stage">
+      <canvas id="game" width="624" height="624"></canvas>
+      <div class="overlay" id="overlay">
+        <h2 id="ovTitle">坦克大战</h2>
+        <p id="ovText">
+          保卫你的基地，消灭所有来犯的敌方坦克！<br />
+          方向键 / WASD 移动，空格键开火。
+        </p>
+        <button class="btn" id="startBtn">开始游戏</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>战况</h3>
+      <div class="stat"><span>关卡</span><b id="uiStage">1</b></div>
+      <div class="stat"><span>得分</span><b id="uiScore">0</b></div>
+      <div class="stat"><span>生命</span><b id="uiLives">3</b></div>
+      <div class="stat"><span>剩余敌人</span><b id="uiEnemies">0</b></div>
+      <div class="keys">
+        <h3 style="margin-top:16px">操作</h3>
+        <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> 或 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动<br />
+        <kbd>空格</kbd> 开火<br />
+        <kbd>P</kbd> 暂停
+      </div>
+    </div>
+  </div>
+  <footer>HTML5 Canvas · 纯 JavaScript 实现</footer>
+  <script src="game.js"></script>
+</body>
+</html>
